@@ -37,7 +37,9 @@ Route::get('/c/search', [ClientController::class, 'searchClients']);
 Route::post('/order', [OrderController::class, 'order']);
 Route::get('/orders', [OrderController::class, 'index']);
 Route::post('/orders/{id}', [OrderController::class, 'update']);
+Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 Route::get('/o/search', [OrderController::class, 'searchOrders']);
 Route::get('/orders/sales', [OrderController::class, 'salesPerYear']);
 
 Route::get('/budgets', [BudgetController::class, 'index']);
+Route::post('/update-budget', [BudgetController::class, 'updateFirst']);

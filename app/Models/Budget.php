@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Budget extends Model
 {
     use HasFactory;
-    protected $fillable = ['budget'];
+    protected $fillable = ['budget', 'profit'];
 }

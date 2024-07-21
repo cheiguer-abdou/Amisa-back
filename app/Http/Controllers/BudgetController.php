@@ -13,6 +13,35 @@ class BudgetController extends Controller
         $budget = Budget::firstOrFail();
         return response()->json($budget, 200);
     }
+
+    public function updateFirst(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'budget' => 'required|numeric|min:0',
+            'profit' => 'required|numeric|min:0',
+        ]);
+
+        // Fetch the first budget record
+        $budget = Budget::first();
+
+        // Check if a budget record exists
+        if (!$budget) {
+            return response()->json([
+                'message' => 'No budget record found',
+            ], 404);
+        }
+
+        // Update the budget
+        $budget->update($validatedData);
+
+        // Return a response
+        return response()->json([
+            'message' => 'Budget updated successfully',
+            'data' => $budget
+        ], 200);
+    }
+
     public function updateBudget(Request $request, $orderId)
     {
         $order = Order::findOrFail($orderId);

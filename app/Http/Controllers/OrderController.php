@@ -118,4 +118,14 @@ class OrderController extends Controller
 
         return response()->json($salesPerYear);
     }
+
+    public function destroy($id)
+    {
+        $order = Order::find($id);
+        if (!$order) {
+            return response()->json(['message' => 'Order not found'], 404);
+        }
+        $order->delete();
+        return response()->json(['message' => 'Order deleted successfully'], 200);
+    }
 }
